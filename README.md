@@ -63,8 +63,9 @@ predicted_ma = gpu_predict_ma(smiles_list)
 
 ## License
 
-No root `LICENSE` file is currently committed. Treat the repository source as unlicensed
-until a separate provenance/license review is completed.
+MIT License. See [`LICENSE`](LICENSE).
+
+The committed `ma_model.pt` artifact is documented in [`MODEL_PROVENANCE.md`](MODEL_PROVENANCE.md).
 ## Citation
 
 If you use this tool, please cite:
