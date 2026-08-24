@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile core sources
+        run: |
+          python -m py_compile assembly_index.py gpu_engine.py nn_predictor.py validate.py setup.py
+      - name: Verify provenance document
+        run: test -s MODEL_PROVENANCE.md
+      - name: GPU-test scope note
+        run: echo "GPU execution paths are intentionally excluded from GitHub-hosted CPU runners."
